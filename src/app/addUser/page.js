@@ -38,6 +38,7 @@ export default function Page(){
             <input type="text" value={address} onChange={(e)=>setAddress(e.target.value)} placeholder="enter address" className="input" />
             <input type="text" value={occupation} onChange={(e)=>setOccupation(e.target.value)} placeholder="enter occupation" className="input" />
             <input type="text" value={remarks} onChange={(e)=>setRemarks(e.target.value)} placeholder="remarks" className="input" />
+            <p>Check This Box If Paid</p>
             <input type="checkbox" id="booleanCheckbox" name="booleanValue" checked={paid} value={paid} onChange={(e)=>setPaid(e.target.checked)} placeholder="enter paid or not" className="input" />
 
             <div className="btn-container">
