@@ -14,7 +14,7 @@ export default function Page(){
 
     const addUser=async ()=>{
         // console.log(name,phone,email,registeredby,area);
-        let result = await fetch("http://localhost:3000/api/register",{
+        let result = await fetch("https://umang-admin.vercel.app/api/register",{
             method:"POST",
             body:JSON.stringify({name,contact,email,registeredBy,address,occupation,remarks,paid})
         });
