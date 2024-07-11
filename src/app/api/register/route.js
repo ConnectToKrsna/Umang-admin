@@ -21,3 +21,11 @@ export async function GET(){
     // console.log(data)
     return NextResponse.json({result:data, success});
 }
+
+export async function POST(request){
+    const payload = await request.json();
+    await mongoose.connect(connectionStr);
+    let registration = new Register(payload);
+    const result = await registration.save();
+    return NextResponse.json({result, success:true});
+}

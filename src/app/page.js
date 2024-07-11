@@ -8,6 +8,7 @@ export default function Home() {
     <h1>Hare Krishna</h1>
 
     <Link href="/register">Admin Page</Link>
+    <Link href="/addUser">Registration Page</Link>
     </main>
   );
 }

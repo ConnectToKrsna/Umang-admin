@@ -1,0 +1,67 @@
+.heading{
+    text-align: center;
+    margin: 10vh 0 18vh 0;
+    color: rgb(50, 50, 165);
+    font-size: 12vh;
+}
+*{
+    text-align: center;
+}
+.btn-reg{
+    font-size: 5vh;
+    color: rgb(15, 68, 98);
+    
+}
+.btn{
+    margin: 10vh 0 14vh 0;
+}
+.heading-add{
+    color: rgb(88, 20, 152);
+    margin: 10vh 0 15vh 0;
+    font-size: 6vh;
+}
+.add-data{
+    /* text-align: center; */
+    
+}
+.add-data input{
+    /* display: flex;
+    justify-content: center; */
+    display: block;
+    margin-bottom: 1vh;
+}
+.input-data{
+    display: flex;
+    justify-content: center;
+}
+.btn-container{
+    display: block;
+    margin: 2vh;
+}
+input{
+    height: 5vh;
+    width: 50vw;
+}
+.btn{
+    font-size: 3vh;
+}
+.input-data{
+    /* display: flex;
+    justify-content: center; */
+}
+.reg-nav{
+    display: flex;
+    margin: 6vh 0 10vh 0;
+}
+.reg-page-heading{
+    justify-content: left;
+    display: flex;
+    
+}
+.reg-nav1{
+    justify-content: right;
+    display: flex;
+    width: 50%;
+    left: 5%;
+    /* margin-left: 0%; */
+}
