@@ -2,7 +2,7 @@ import Link from "next/link";
 
 
 const getRegister = async () =>{
-    let data = await fetch("http://localhost:3000/api/register", {cache: 'no-store'} );
+    let data = await fetch("https://umang-admin.vercel.app/api/register", {cache: 'no-store'} );
     data = await data.json();
     if(data.success){
         return data.result;
