@@ -22,12 +22,16 @@ export default async function Page(){
         <div>
         <Link href="/" >Home</Link>
         </div>
+        <div>
+            Total Count : {registrations.length}
+        </div>
         </nav>
         
             <h1>Registration List</h1>
             <table border="1">
                 <thead>
                     <tr>
+                        <td>Sr No.</td>
                         <td>name</td>
                         <td>email</td>
                         <td>contact</td>
@@ -41,7 +45,8 @@ export default async function Page(){
                 </thead>
                 <tbody>
                     {
-                        registrations.map((user) => (<tr key={user.id}>
+                        registrations.map((user, index) => (<tr key={index}>
+                            <td>{index + 1}</td>
                             <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>{user.contact}</td>
@@ -49,7 +54,7 @@ export default async function Page(){
                         <td>{user.address}</td>
                         <td>{user.remarks}</td>
                         <td>{user.registeredBy}</td>
-                        <td>{user.paid}</td>
+                        <td>{user.paid ? 'true' : 'false'}</td>
 
                         </tr>))
                     }
