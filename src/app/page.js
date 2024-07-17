@@ -12,7 +12,7 @@ export default function Home() {
   //   }
   // }
   const [authenticated, setAuthenticated] = useState(false);
-  const correctPassword = 'vansh@donation'; // Replace with your actual password
+  const correctPassword = 'vansh@2024'; // Replace with your actual password
 
   const handlePasswordSubmit = (inputPassword) => {
     if (inputPassword === correctPassword) {
