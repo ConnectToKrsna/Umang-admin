@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import "../style.css"
+import PasswordInput from "@/components/PasswordInput";
 // import "../style.css"
 export default function Page(){
     const [name,setName] = useState("");
@@ -23,6 +24,20 @@ export default function Page(){
             alert("registration done")
         }
 
+    }
+    const [authenticated, setAuthenticated] = useState(false);
+    const correctPassword = 'vansh@2024'; // Replace with your actual password
+  
+    const handlePasswordSubmit = (inputPassword) => {
+      if (inputPassword === correctPassword) {
+        setAuthenticated(true);
+      } else {
+        alert('Incorrect password. Please try again.');
+      }
+    };
+  
+    if (!authenticated) {
+      return <PasswordInput onPasswordSubmit={handlePasswordSubmit} />;
     }
     return (
         <div className="add-data">

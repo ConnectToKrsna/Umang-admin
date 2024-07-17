@@ -6,7 +6,7 @@ import PasswordInput from "@/components/PasswordInput";
 // Fetch registration data from the server
 const getRegister = async () => {
   try {
-    let response = await fetch("https://umang-admin.vercel.app/api/register", { cache: 'no-store' });
+    let response = await fetch("http://localhost:3000/api/register", { cache: 'no-store' });
     let data = await response.json();
     if (data.success) {
       return data.result;
