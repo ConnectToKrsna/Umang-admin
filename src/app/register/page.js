@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import PasswordInput from "@/components/PasswordInput";
 
 // Fetch registration data from the server
 const getRegister = async () => {
