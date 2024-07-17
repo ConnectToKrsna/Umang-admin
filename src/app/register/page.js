@@ -44,6 +44,21 @@ export default function Page() {
     return filterPaid === 'true' ? user.paid : !user.paid;
   });
 
+  const [authenticated, setAuthenticated] = useState(false);
+  const correctPassword = 'vansh@donation'; // Replace with your actual password
+
+  const handlePasswordSubmit = (inputPassword) => {
+    if (inputPassword === correctPassword) {
+      setAuthenticated(true);
+    } else {
+      alert('Incorrect password. Please try again.');
+    }
+  };
+
+  if (!authenticated) {
+    return <PasswordInput onPasswordSubmit={handlePasswordSubmit} />;
+  }
+
   return (
     <div>
       <nav>
