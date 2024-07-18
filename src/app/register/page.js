@@ -1,12 +1,11 @@
 'use client'
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import PasswordInput from "@/components/PasswordInput";
 
 // Fetch registration data from the server
 const getRegister = async () => {
   try {
-    let response = await fetch("https://umang-admin.vercel.app/api/register", { cache: 'no-store' });
+    let response = await fetch("http://localhost:3000/api/register", { cache: 'no-store' });
     let data = await response.json();
     if (data.success) {
       return data.result;
@@ -23,6 +22,8 @@ const getRegister = async () => {
 export default function Page() {
   const [registrations, setRegistrations] = useState([]);
   const [filterPaid, setFilterPaid] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  // const [filteredRegistrations, setFilteredRegistrations] = useState([]);
 
   useEffect(() => {
     // Fetch registration data on component mount
@@ -30,6 +31,7 @@ export default function Page() {
       const result = await getRegister();
       if (result.success !== false) {
         setRegistrations(result);
+        // setFilteredRegistrations(result);
       }
     };
     fetchData();
@@ -38,27 +40,34 @@ export default function Page() {
   const handleFilterChange = (event) => {
     setFilterPaid(event.target.value);
   };
-
-  // Filter registrations based on the selected filter value
-  const filteredRegistrations = registrations.filter(user => {
-    if (filterPaid === 'all') return true;
-    return filterPaid === 'true' ? user.paid : !user.paid;
-  });
-
-  const [authenticated, setAuthenticated] = useState(false);
-  const correctPassword = 'vansh@2024'; // Replace with your actual password
-
-  const handlePasswordSubmit = (inputPassword) => {
-    if (inputPassword === correctPassword) {
-      setAuthenticated(true);
-    } else {
-      alert('Incorrect password. Please try again.');
-    }
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
   };
 
-  if (!authenticated) {
-    return <PasswordInput onPasswordSubmit={handlePasswordSubmit} />;
-  }
+  const filteredRegistrations = registrations.filter(user => {
+    if (filterPaid === 'all') {
+      return true;
+    } else if (filterPaid === 'true') {
+      return user.paid;
+    } else {
+      return !user.paid;
+    }
+  }).filter(user => {
+    if (!searchQuery) {
+      return true;
+    }
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    return user.name && user.name.toLowerCase().includes(lowerCaseQuery);
+  });
+
+  const totalPaidCount = registrations.filter(user => user.paid).length;
+  const totalUnpaidCount = registrations.filter(user => !user.paid).length;
+
+  // Filter registrations based on the selected filter value
+  // const filteredRegistrations = registrations.filter(user => {
+  //   if (filterPaid === 'all') return true;
+  //   return filterPaid === 'true' ? user.paid : !user.paid;
+  // });
 
   return (
     <div>
@@ -70,7 +79,7 @@ export default function Page() {
           <Link href="/">Home</Link>
         </div>
         <div>
-          Total Count: {registrations.length}
+          Total Count: {registrations.length} | Paid Count: {totalPaidCount} | Unpaid Count: {totalUnpaidCount}
         </div>
       </nav>
       
@@ -84,6 +93,17 @@ export default function Page() {
           <option value="true">Paid</option>
           <option value="false">Unpaid</option>
         </select>
+      </div>
+
+      {/* Search input and button */}
+      <div>
+        <input 
+          type="text" 
+          placeholder="Search..." 
+          value={searchQuery} 
+          onChange={handleSearchChange} 
+        />
+        {/* <button onClick={handleSearch}>Search</button> */}
       </div>
 
       {/* Registration table */}
