@@ -123,7 +123,7 @@ export default function Page() {
       <div>
         <input 
           type="text" 
-          placeholder="Search..." 
+          placeholder="Search by Name or RegisteredBy" 
           value={searchQuery} 
           onChange={handleSearchChange} 
             className="data-search"
