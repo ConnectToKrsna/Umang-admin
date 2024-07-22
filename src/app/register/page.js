@@ -48,6 +48,16 @@ export default function Page() {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const filteredRegistrations = registrations.filter(user => {
     if (filterPaid === 'all') {
@@ -149,6 +159,9 @@ export default function Page() {
         </tbody>
       </table>
           <div>
+      <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+          Previous
+        </button>
         {Array.from({ length: totalPages }, (_, index) => (
           <button 
             key={index} 
@@ -158,6 +171,9 @@ export default function Page() {
             {index + 1}
           </button>
         ))}
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next
+        </button>
       </div>
     </div>
   );
