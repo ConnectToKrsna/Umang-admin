@@ -41,9 +41,11 @@ export default function Page() {
 
   const handleFilterChange = (event) => {
     setFilterPaid(event.target.value);
+    setCurrentPage(1); //reset to the first page on filter change
   };
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+    setCurrentPage(1); //reset to the first page on search change
   };
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -123,6 +125,7 @@ export default function Page() {
           placeholder="Search..." 
           value={searchQuery} 
           onChange={handleSearchChange} 
+            className="data-search"
         />
         {/* <button onClick={handleSearch}>Search</button> */}
       </div>
