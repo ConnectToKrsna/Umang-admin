@@ -133,9 +133,9 @@ export default function Page() {
           </tr>
         </thead>
         <tbody>
-          {filteredRegistrations.map((user, index) => (
+          {currentItems.map((user, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td>{indexOfFirstItem + index + 1}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.contact}</td>
