@@ -57,7 +57,8 @@ export default function Page() {
       return true;
     }
     const lowerCaseQuery = searchQuery.toLowerCase();
-    return user.name && user.name.toLowerCase().includes(lowerCaseQuery);
+    return (user.name && user.name.toLowerCase().includes(lowerCaseQuery)) ||
+      (user.registeredBy && user.registeredBy.toLowerCase().includes(lowerCaseQuery))
   });
 
   const totalPaidCount = registrations.filter(user => user.paid).length;
