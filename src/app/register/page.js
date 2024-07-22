@@ -126,7 +126,7 @@ export default function Page() {
           placeholder="Search by Name or RegisteredBy" 
           value={searchQuery} 
           onChange={handleSearchChange} 
-            className="data-search"
+          style={{width: '15%'}}
         />
         {/* <button onClick={handleSearch}>Search</button> */}
       </div>
