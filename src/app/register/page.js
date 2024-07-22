@@ -23,6 +23,8 @@ export default function Page() {
   const [registrations, setRegistrations] = useState([]);
   const [filterPaid, setFilterPaid] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
   // const [filteredRegistrations, setFilteredRegistrations] = useState([]);
 
   useEffect(() => {
@@ -42,6 +44,9 @@ export default function Page() {
   };
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   const filteredRegistrations = registrations.filter(user => {
@@ -63,6 +68,11 @@ export default function Page() {
 
   const totalPaidCount = registrations.filter(user => user.paid).length;
   const totalUnpaidCount = registrations.filter(user => !user.paid).length;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredRegistrations.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredRegistrations.length / itemsPerPage);
 
   // Filter registrations based on the selected filter value
   // const filteredRegistrations = registrations.filter(user => {
@@ -138,6 +148,17 @@ export default function Page() {
           ))}
         </tbody>
       </table>
+          <div>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button 
+            key={index} 
+            onClick={() => handlePageChange(index + 1)} 
+            disabled={currentPage === index + 1}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
