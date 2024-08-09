@@ -40,6 +40,10 @@ const registerSchema = new mongoose.Schema({
         // required:true,
         // maxLength:20,
         default:false,
+    },
+    attendance :{
+        type: Boolean,
+        default: false
     }
 });
 export const Register = mongoose.models.registers || mongoose.model("registers",registerSchema);
