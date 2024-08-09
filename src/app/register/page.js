@@ -146,7 +146,7 @@ export default function Page() {
       <td style={{ width: '10%' }}>Remarks</td>
       <td style={{ width: '10%' }}>Registered By</td>
       <td style={{ width: '5%' }}>Paid</td>
-      <td style={{ width: '10%' }}>Attendance</td>
+      {/* <td style={{ width: '10%' }}>Attendance</td> */}
           </tr>
         </thead>
         <tbody>
@@ -161,9 +161,9 @@ export default function Page() {
               <td>{user.remarks}</td>
               <td>{user.registeredBy}</td>
               <td>{user.paid ? 'true' : 'false'}</td>
-              <td>
-                {/* <AttendanceToggle user={user} /> */}
-              </td>
+              {/* <td>
+                <AttendanceToggle user={user} />
+              </td> */}
             </tr>
           ))}
         </tbody>
