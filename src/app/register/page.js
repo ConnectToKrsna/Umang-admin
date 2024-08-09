@@ -137,16 +137,16 @@ export default function Page() {
       <table border="1">
         <thead>
           <tr>
-            <td>Sr No.</td>
-            <td>name</td>
-            <td>email</td>
-            <td>contact</td>
-            <td>occupation</td>
-            <td>address</td>
-            <td>remarks</td>
-            <td>registeredBy</td>
-            <td>paid</td>
-            <td>Attendance</td>
+            <td style={{ width: '5%' }}>Sr No.</td>
+      <td style={{ width: '15%' }}>Name</td>
+      <td style={{ width: '15%' }}>Email</td>
+      <td style={{ width: '10%' }}>Contact</td>
+      <td style={{ width: '10%' }}>Occupation</td>
+      <td style={{ width: '20%' }}>Address</td>
+      <td style={{ width: '10%' }}>Remarks</td>
+      <td style={{ width: '10%' }}>Registered By</td>
+      <td style={{ width: '5%' }}>Paid</td>
+      <td style={{ width: '10%' }}>Attendance</td>
           </tr>
         </thead>
         <tbody>
