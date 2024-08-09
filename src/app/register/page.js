@@ -162,7 +162,7 @@ export default function Page() {
               <td>{user.registeredBy}</td>
               <td>{user.paid ? 'true' : 'false'}</td>
               <td>
-                <AttendanceToggle user={user} />
+                {/* <AttendanceToggle user={user} /> */}
               </td>
             </tr>
           ))}
