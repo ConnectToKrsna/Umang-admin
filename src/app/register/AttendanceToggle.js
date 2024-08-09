@@ -11,7 +11,7 @@ export default function AttendanceToggle({ user }) {
     setLoading(true);
 
     try {
-      const response = await fetch(`/api/register/${user._id}`, {
+      const response = await fetch(`https://umang-admin.vercel.app/api/register/${user._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
