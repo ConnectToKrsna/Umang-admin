@@ -2,11 +2,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import "../style.css"
+import AttendanceToggle from "./AttendanceToggle";
 
 // Fetch registration data from the server
 const getRegister = async () => {
   try {
-    let response = await fetch("https://umang-admin.vercel.app/api/register", { cache: 'no-store' });
+    //https://umang-admin.vercel.app/api/register
+    let response = await fetch("http://localhost:3000/api/register", { cache: 'no-store' });
     let data = await response.json();
     if (data.success) {
       return data.result;
@@ -144,6 +146,7 @@ export default function Page() {
             <td>remarks</td>
             <td>registeredBy</td>
             <td>paid</td>
+            <td>Attendance</td>
           </tr>
         </thead>
         <tbody>
@@ -158,6 +161,9 @@ export default function Page() {
               <td>{user.remarks}</td>
               <td>{user.registeredBy}</td>
               <td>{user.paid ? 'true' : 'false'}</td>
+              <td>
+                <AttendanceToggle user={user} />
+              </td>
             </tr>
           ))}
         </tbody>
