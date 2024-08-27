@@ -21,6 +21,58 @@ const getRegister = async () => {
   }
 };
 
+// Function to convert JSON data to CSV format
+const convertToCSV = (data) => {
+  const headers = [
+    "Sr No.",
+    "Name",
+    "Email",
+    "Contact",
+    "Occupation",
+    "Address",
+    "Remarks",
+    "Registered By",
+    "Paid"
+  ];
+
+  // Function to escape and wrap fields that contain special characters
+  const escapeField = (field) => {
+    if (typeof field === 'string') {
+      return `"${field.replace(/"/g, '""')}"`; // Escape double quotes by doubling them
+    }
+    return field;
+  };
+
+  const rows = data.map((user, index) => [
+    index + 1,
+    escapeField(user.name),
+    escapeField(user.email),
+    escapeField(user.contact),
+    escapeField(user.occupation),
+    escapeField(user.address),
+    escapeField(user.remarks),
+    escapeField(user.registeredBy),
+    user.paid ? "true" : "false"
+  ]);
+
+  return [
+    headers.join(","), // Join headers with commas
+    ...rows.map(row => row.join(",")) // Join each row's fields with commas
+  ].join("\n"); // Join rows with newlines
+};
+
+// Function to trigger CSV download
+const downloadCSV = (data, filename = "registrations.csv") => {
+  const csvString = convertToCSV(data);
+  const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+
+  link.href = URL.createObjectURL(blob);
+  link.setAttribute("download", filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 // Page component
 export default function Page() {
   const [registrations, setRegistrations] = useState([]);
@@ -183,6 +235,12 @@ export default function Page() {
         ))}
         <button onClick={handleNextPage} disabled={currentPage === totalPages}>
           Next
+        </button>
+      </div>
+      {/* Download button */}
+      <div>
+        <button onClick={() => downloadCSV(filteredRegistrations)}>
+          Download This Data
         </button>
       </div>
     </div>
