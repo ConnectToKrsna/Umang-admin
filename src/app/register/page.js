@@ -1,3 +1,4 @@
+
 'use client'
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -79,8 +80,7 @@ export default function Page() {
   const [filterPaid, setFilterPaid] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 50;
-
+  const itemsPerPage = 20;
   // const [filteredRegistrations, setFilteredRegistrations] = useState([]);
 
   useEffect(() => {
@@ -131,13 +131,11 @@ export default function Page() {
     }
     const lowerCaseQuery = searchQuery.toLowerCase();
     return (user.name && user.name.toLowerCase().includes(lowerCaseQuery)) ||
-      (user.registeredBy && user.registeredBy.toLowerCase().includes(lowerCaseQuery)) ||
-      (user.contact && String(user.contact).toLowerCase().includes(lowerCaseQuery)) // Convert contact to string safely
+      (user.registeredBy && user.registeredBy.toLowerCase().includes(lowerCaseQuery))
   });
 
   const totalPaidCount = registrations.filter(user => user.paid).length;
   const totalUnpaidCount = registrations.filter(user => !user.paid).length;
-  const totalAttendanceCount = registrations.filter(user => user.attendance).length;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -160,7 +158,7 @@ export default function Page() {
           <Link href="/">Home</Link>
         </div>
         <div>
-          Total Count: {registrations.length} | Paid Count: {totalPaidCount} | Unpaid Count: {totalUnpaidCount} | Total Attendance: {totalAttendanceCount}
+          Total Count: {registrations.length} | Paid Count: {totalPaidCount} | Unpaid Count: {totalUnpaidCount}
         </div>
       </nav>
       
@@ -217,18 +215,8 @@ export default function Page() {
               <td>{user.registeredBy}</td>
               <td>{user.paid ? 'true' : 'false'}</td>
               <td>
-              <AttendanceToggle 
-                  user={user} 
-                  onToggle={(isPresent) => {
-                    // Update attendance directly in the registrations list
-                    setRegistrations(prevRegistrations => 
-                      prevRegistrations.map(reg => 
-                        reg.id === user.id ? { ...reg, attendance: isPresent } : reg
-                      )
-                    );
-                  }} 
-                />
-                </td>
+                <AttendanceToggle user={user} />
+              </td>
             </tr>
           ))}
         </tbody>
@@ -256,7 +244,6 @@ export default function Page() {
           Download This Data
         </button>
       </div>
-      
     </div>
   );
 }
