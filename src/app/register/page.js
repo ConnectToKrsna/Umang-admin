@@ -79,7 +79,7 @@ export default function Page() {
   const [filterPaid, setFilterPaid] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 50;
 
   // const [filteredRegistrations, setFilteredRegistrations] = useState([]);
 
