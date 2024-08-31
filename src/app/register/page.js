@@ -215,9 +215,17 @@ export default function Page() {
               <td>{user.remarks}</td>
               <td>{user.registeredBy}</td>
               <td>{user.paid ? 'true' : 'false'}</td>
-              <td>
-                <AttendanceToggle user={user} />
-              </td>
+              <AttendanceToggle 
+                  user={user} 
+                  onToggle={(isPresent) => {
+                    // Update attendance directly in the registrations list
+                    setRegistrations(prevRegistrations => 
+                      prevRegistrations.map(reg => 
+                        reg.id === user.id ? { ...reg, attendance: isPresent } : reg
+                      )
+                    );
+                  }} 
+                />
             </tr>
           ))}
         </tbody>
