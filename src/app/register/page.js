@@ -80,6 +80,7 @@ export default function Page() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
+
   // const [filteredRegistrations, setFilteredRegistrations] = useState([]);
 
   useEffect(() => {
@@ -135,6 +136,7 @@ export default function Page() {
 
   const totalPaidCount = registrations.filter(user => user.paid).length;
   const totalUnpaidCount = registrations.filter(user => !user.paid).length;
+  const totalAttendanceCount = registrations.filter(user => user.attendance).length;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -157,7 +159,7 @@ export default function Page() {
           <Link href="/">Home</Link>
         </div>
         <div>
-          Total Count: {registrations.length} | Paid Count: {totalPaidCount} | Unpaid Count: {totalUnpaidCount}
+          Total Count: {registrations.length} | Paid Count: {totalPaidCount} | Unpaid Count: {totalUnpaidCount} | Total Attendance: {totalAttendanceCount}
         </div>
       </nav>
       
