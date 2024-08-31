@@ -198,7 +198,7 @@ export default function Page() {
       <td style={{ width: '10%' }}>Remarks</td>
       <td style={{ width: '10%' }}>Registered By</td>
       <td style={{ width: '5%' }}>Paid</td>
-      {/* <td style={{ width: '10%' }}>Attendance</td> */}
+      <td style={{ width: '6%' }}>Attendance</td>
           </tr>
         </thead>
         <tbody>
