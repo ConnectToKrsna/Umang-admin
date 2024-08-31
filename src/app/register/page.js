@@ -131,7 +131,8 @@ export default function Page() {
     }
     const lowerCaseQuery = searchQuery.toLowerCase();
     return (user.name && user.name.toLowerCase().includes(lowerCaseQuery)) ||
-      (user.registeredBy && user.registeredBy.toLowerCase().includes(lowerCaseQuery))
+      (user.registeredBy && user.registeredBy.toLowerCase().includes(lowerCaseQuery)) ||
+      (user.contact && String(user.contact).toLowerCase().includes(lowerCaseQuery)) // Convert contact to string safely
   });
 
   const totalPaidCount = registrations.filter(user => user.paid).length;
