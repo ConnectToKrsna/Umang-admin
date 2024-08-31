@@ -213,9 +213,9 @@ export default function Page() {
               <td>{user.remarks}</td>
               <td>{user.registeredBy}</td>
               <td>{user.paid ? 'true' : 'false'}</td>
-              {/* <td>
+              <td>
                 <AttendanceToggle user={user} />
-              </td> */}
+              </td>
             </tr>
           ))}
         </tbody>
