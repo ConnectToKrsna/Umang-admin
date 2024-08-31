@@ -136,6 +136,7 @@ export default function Page() {
 
   const totalPaidCount = registrations.filter(user => user.paid).length;
   const totalUnpaidCount = registrations.filter(user => !user.paid).length;
+  const totalAttendanceCount = registrations.filter(user => user.attendance).length;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -158,7 +159,7 @@ export default function Page() {
           <Link href="/">Home</Link>
         </div>
         <div>
-          Total Count: {registrations.length} | Paid Count: {totalPaidCount} | Unpaid Count: {totalUnpaidCount}
+          Total Count: {registrations.length} | Paid Count: {totalPaidCount} | Unpaid Count: {totalUnpaidCount} | Attendance Count: {totalAttendanceCount}
         </div>
       </nav>
       
@@ -204,7 +205,7 @@ export default function Page() {
         </thead>
         <tbody>
           {currentItems.map((user, index) => (
-            <tr key={index}>
+            <tr key={user._id}>
               <td>{indexOfFirstItem + index + 1}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>

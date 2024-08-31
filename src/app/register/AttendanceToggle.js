@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function AttendanceToggle({ user }) {
   const [isPresent, setIsPresent] = useState(user.attendance || false);
   const [loading, setLoading] = useState(false); // Optional: to handle loading state
   const [error, setError] = useState(null); // Optional: to handle errors
 
+
+  useEffect(() => {
+    // Sync local state with the prop value whenever the user object changes
+    setIsPresent(user.attendance || false);
+  }, [user.attendance]);
   const handleAttendanceChange = async () => {
     const updatedAttendance = !isPresent;
     setIsPresent(updatedAttendance);
