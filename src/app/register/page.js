@@ -74,6 +74,12 @@ const downloadCSV = (data, filename = "registrations.csv") => {
   link.click();
   document.body.removeChild(link);
 };
+
+// New function to download attendance data of present users
+const downloadAttendanceCSV = (data, filename = "attendance.csv") => {
+  const attendanceData = data.filter(user => user.attendance);
+  downloadCSV(attendanceData, filename);
+};
 // Page component
 export default function Page() {
   const [registrations, setRegistrations] = useState([]);
@@ -244,6 +250,9 @@ export default function Page() {
       <div>
         <button onClick={() => downloadCSV(filteredRegistrations)}>
           Download This Data
+        </button>
+        <button onClick={() => downloadAttendanceCSV(registrations)}>
+          Download Attendance Data
         </button>
       </div>
     </div>
